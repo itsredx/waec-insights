@@ -8,7 +8,7 @@ export function NewsTicker({ className }: { className?: string }) {
     <div className={cn("bg-primary text-primary-foreground fixed bottom-0 left-0 w-full h-10 flex items-center z-50 overflow-hidden", className)}>
       <div className="ticker-wrapper">
         <div className="ticker-content">
-          {[...Array(4)].map((_, i) => (
+          {[...Array(6)].map((_, i) => (
             <span key={i} className="font-headline-ticker px-8">
               Built by{" "}
               <Link
