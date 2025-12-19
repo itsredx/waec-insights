@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useRef, useEffect, useCallback } from "react"
-import { useSearchParams } from "next/navigation"
 import { Loader2, Send, User, Bot } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -19,7 +18,9 @@ type Message = {
 }
 
 export default function ChatPage() {
-  const searchParams = useSearchParams()
+  // Note: avoid using next/navigation's useSearchParams in this page because
+  // it causes a prerender-time hook call that fails during static export.
+  // Read the query param from window.location inside a client-only effect below.
   const [messages, setMessages] = useState<Message[]>([
     { role: 'ai', content: 'Hello! I have access to the Kano WAEC data (2016-2021). Ask me anything about pass rates, gender gaps, or school performance.' }
   ])
@@ -82,15 +83,26 @@ export default function ChatPage() {
 
   // Handle initial query from URL (from prediction page)
   useEffect(() => {
-    const query = searchParams.get('q')
-    if (query && !hasProcessedQuery.current) {
-      hasProcessedQuery.current = true
-      // Small delay to ensure component is mounted
-      setTimeout(() => {
-        sendMessage(query)
-      }, 100)
+    // Read the `q` parameter from the URL on the client to avoid server-side
+    // usage of `useSearchParams`, which can cause prerender errors.
+    if (typeof window === 'undefined') return
+    try {
+      const params = new URLSearchParams(window.location.search)
+      const query = params.get('q')
+      if (query && !hasProcessedQuery.current) {
+        hasProcessedQuery.current = true
+        // Small delay to ensure component is mounted
+        setTimeout(() => {
+          sendMessage(query)
+        }, 100)
+      }
+    } catch (err) {
+      // Fail silently if parsing the URL fails in any environment.
+      // This keeps the component robust during prerender/build.
+      // eslint-disable-next-line no-console
+      console.error('Failed to read query param for chat page', err)
     }
-  }, [searchParams, sendMessage])
+  }, [sendMessage])
 
   return (
     <div className="h-full flex flex-col">

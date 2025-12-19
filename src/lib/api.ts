@@ -7,6 +7,14 @@ export interface PredictInput {
   total_sat: number;
 }
 
+/*Hi guys! 👋 I volunteered to build the WAEC Insights Project we discussed.
+
+It’s now live! I built a dashboard to visualize the trends, trained a Random Forest model to predict future pass rates, and added an AI assistant so you can 'chat' with the dataset.
+
+Check it out here: https://waec-insights.onrender.com
+
+Let me know what you think about the UI and the predictions! */
+
 export interface PredictResponse {
   predicted_pass_rate: number;
 }
