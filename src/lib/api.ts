@@ -1,4 +1,4 @@
-export const API_BASE_URL = "https://waec-api.onrender.com/";
+export const API_BASE_URL = "https://waec-api.onrender.com";
 
 export interface PredictInput {
   year: number;
