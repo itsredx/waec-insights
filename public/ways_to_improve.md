@@ -157,4 +157,4 @@ print("Enhancement complete. Model is now time-aware.")
 4. [ ] **Validation:** Switch to Time-Series splitting to measure accuracy honestly.
 
 > "Thank you for using this service and I hope to see you create extraordinary stuff from the little I shared."
-> — **WAEC Analytics**, Creator [RED X](https://red-x.vercel.app/)
+> — **WAEC Analytics**, Creator [AHMAD MB](https://red-x.vercel.app/)

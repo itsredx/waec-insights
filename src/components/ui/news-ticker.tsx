@@ -17,7 +17,7 @@ export function NewsTicker({ className }: { className?: string }) {
                 rel="noopener noreferrer"
                 className="underline hover:text-accent transition-colors"
               >
-                RED X
+                AHMAD MB
               </Link>{" "}
               at NCDMB AI/ML & B.D.A Training Kano
             </span>

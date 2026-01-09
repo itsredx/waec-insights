@@ -122,7 +122,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
                             rel="noopener noreferrer"
                         >
                             <span className="hidden sm:inline">Built by </span>
-                            <span className="font-semibold text-primary ml-1.5 mr-1">RED X</span>
+                            <span className="font-semibold text-primary ml-1.5 mr-1">AHMAD MB</span>
                             <ExternalLink className="h-4 w-4" />
                         </Link>
                     </Button>
